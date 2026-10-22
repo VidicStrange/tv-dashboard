@@ -34,7 +34,7 @@
   .fx .chg { font-size: 2.2vh; margin-left: 1vw; }
   .up { color: #6fd39a; } .down { color: #f08a7e; } .flat { color: #9fb0c8; }
   .aff { margin-top: 3.5vh; text-align: center; font-size: 3.3vh; font-style: italic; font-weight: 300; color: #e2cfa0; letter-spacing: 0.01em; }
-  .aff:before, .aff:after { content: ''; display: inline-block; width: 4vw; height: 1px; background: rgba(226,207,160,0.35); vertical-align: middle; margin: 0 1.5vw; }
+  .aff small { display: block; margin-top: 0.8vh; font-size: 2.3vh; color: #9a8f74; font-style: italic; }
   .news { -webkit-flex: 1; flex: 1; margin-top: 4vh; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 3vh; overflow: hidden; position: relative; }
   .news h2 { margin: 0 0 2vh 0; font-size: 2.2vh; font-weight: 500; color: #6f819b; text-transform: uppercase; letter-spacing: 0.2em; }
   .item { display: -webkit-flex; display: flex; -webkit-align-items: baseline; align-items: baseline; margin-bottom: 2.1vh; }
@@ -171,7 +171,7 @@
   }
 
   // ---------- news ----------
-  var news = [], page = 0, PER_PAGE = 7;
+  var news = [], page = 0, PER_PAGE = 6;
 
   function addItems(items) {
     var seen = {};
@@ -264,6 +264,37 @@
     "Каждый день я становлюсь чуть мудрее, чем вчера.",
     "Мои решения создают мою свободу.",
     "Изобилие — естественное следствие труда и ясности."];
+  var AFF_EN = ["Money is the energy of my decisions. Today I handle it calmly and precisely.",
+    "I am building a business stronger than my doubts.",
+    "Every step I take today is an investment in who I am becoming.",
+    "I manage money; money does not manage me.",
+    "By knowing myself, I understand what I truly want.",
+    "My scale is defined by the questions I ask myself.",
+    "I treat risk calmly: it is the price of growth.",
+    "Wealth begins with clear thinking and discipline.",
+    "I am grateful for what I have and open to more.",
+    "A mistake is experience, not a verdict.",
+    "I play the long game: reputation, knowledge, trust.",
+    "My strength is staying myself in any country and any language.",
+    "I notice my thoughts and choose the ones that move me forward.",
+    "The value I create for others comes back to me.",
+    "Silence and reflection are work too.",
+    "I learn from every person I negotiate with.",
+    "My boundaries are the foundation of my freedom.",
+    "Money multiplies where there is order.",
+    "I act even without complete certainty.",
+    "I know my strengths and grow them every day.",
+    "Success is the sum of small promises kept to myself.",
+    "I compare myself only to who I was yesterday.",
+    "My body and mind are my main capital. I take care of them.",
+    "I think like an owner, not an employee.",
+    "Calm is my competitive advantage.",
+    "I choose meaning over noise.",
+    "New horizons do not scare me; they inspire me.",
+    "Being honest with myself saves me years.",
+    "Every day I become a little wiser than yesterday.",
+    "My decisions create my freedom.",
+    "Abundance is the natural result of work and clarity."];
   var affDay = -1;
   function showAff() {
     var d = shNow();
@@ -271,7 +302,8 @@
     var day = Math.floor((d - start) / 86400000);
     if (day === affDay) return;
     affDay = day;
-    $('aff').innerHTML = esc(AFF[(day + d.getFullYear()) % AFF.length]);
+    var k = (day + d.getFullYear()) % AFF.length;
+    $('aff').innerHTML = esc(AFF[k]) + '<small>' + esc(AFF_EN[k]) + '</small>';
   }
 
   // ---------- start ----------
